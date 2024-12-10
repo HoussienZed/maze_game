@@ -147,3 +147,15 @@ neighboring elements.  Necessary to avoid giving ids to the boundary divs
 	left: 270px;
 }
 
+.icon1, .icon2, .icon3, .icon4, .icon5 {
+	animation-name: coinSpinner;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes coinSpinner {
+	to {
+		transform: rotateY(360deg);
+	}
+}
