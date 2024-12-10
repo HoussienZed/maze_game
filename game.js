@@ -1,12 +1,19 @@
 //Initialized variables
 let is_game_running = false; 
 let score = 0;
+let countdownTime = 120;
+let isTimerRunning = false;
 
 //Declared variables
 let end;
 let start;
 let boundaries;
 let status_display; 
+let clock;
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", loadPage);
 
@@ -31,6 +38,7 @@ function startGame(){
     is_game_running = true;
     for(let i = 0; i < boundaries.length; i++)
         boundaries[i].style.backgroundColor = "#eeeeee"; 
+    startTimer();
 }
 
 function endGame(){
@@ -48,6 +56,7 @@ function loadPage(){
     start = document.getElementById("start");
     boundaries = document.getElementsByClassName("boundary");
     status_display =  document.getElementById("status");
+    clock = document.getElementById("countdownTimer");
 
     end.addEventListener("mouseover", endGame);
     start.addEventListener("click", startGame);
@@ -56,4 +65,19 @@ function loadPage(){
     }
 }
 
+function startTimer() {
+    if (!isTimerRunning)
+        setInterval(timer, 1000);
+    isTimerRunning = true;
+}
+
+
+function timer() {
+    let minutes = Math.floor(countdownTime / 60);
+    let seconds = countdownTime % 60;
+
+    clock.innerHTML = minutes + ":" + seconds;
+
+    countdownTime--;
+}
 
