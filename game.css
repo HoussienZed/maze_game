@@ -110,3 +110,40 @@ neighboring elements.  Necessary to avoid giving ids to the boundary divs
 	height: 150px;
 	width: 98px;
 }
+
+
+/* .iconsToCollect i{
+	position: relative;
+	top: 215px;
+} */
+
+.icon1 {
+	position: relative;
+	top: 215px;
+	left: 100px;
+}
+
+.icon2 {
+	position: relative;
+	top: 150px;
+	left: 150px;
+}
+
+.icon3 {
+	position: relative;
+	top: 80px;
+	left: 190px;
+}
+
+.icon4 {
+	position: relative;
+	top: 120px;
+	left: 250px;
+}
+
+.icon5 {
+	position: relative;
+	top: 215px;
+	left: 270px;
+}
+
