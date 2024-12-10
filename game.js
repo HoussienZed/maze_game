@@ -78,7 +78,7 @@ function timer() {
     let seconds = countdownTime % 60;
 
     if ((minutes == 0) && (seconds == 0))
-        stopCountdownTimer();
+        clearInterval(timeInterval);
 
     if (seconds < 10) 
         seconds = "0" + seconds;
@@ -91,8 +91,3 @@ function timer() {
 
     countdownTime--;
 }
-
-function stopCountdownTimer() {
-    clearInterval(timeInterval);
-}
-
