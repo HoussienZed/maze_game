@@ -117,37 +117,34 @@ neighboring elements.  Necessary to avoid giving ids to the boundary divs
 	top: 215px;
 } */
 
-.icon1 {
+#coins .icon {
 	position: relative;
 	top: 215px;
 	left: 100px;
 }
-
-.icon2 {
-	position: relative;
+#coins .icon + .icon{
 	top: 150px;
-	left: 150px;
+	left: 160px;
 }
 
-.icon3 {
-	position: relative;
+#coins .icon + .icon + .icon {
+	
 	top: 80px;
 	left: 190px;
 }
 
-.icon4 {
-	position: relative;
+#coins .icon + .icon + .icon + .icon{
+	
 	top: 120px;
-	left: 250px;
-}
-
-.icon5 {
-	position: relative;
-	top: 215px;
 	left: 270px;
 }
 
-.icon1, .icon2, .icon3, .icon4, .icon5 {
+#coins .icon + .icon + .icon + .icon + .icon {
+	top: 215px;
+	left: 350px;
+}
+
+.icon {
 	animation-name: coinSpinner;
 	animation-duration: 2s;
 	animation-iteration-count: infinite;

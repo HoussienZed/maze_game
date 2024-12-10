@@ -91,3 +91,6 @@ function timer() {
 
     countdownTime--;
 }
+
+
+let coins = document.getElementsByClassName("icon");
