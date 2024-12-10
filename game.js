@@ -1,7 +1,7 @@
 //Initialized variables
 let is_game_running = false; 
 let score = 0;
-let countdownTime = 120;
+let countdownTime = 2;
 let isTimerRunning = false;
 
 //Declared variables
@@ -10,6 +10,7 @@ let start;
 let boundaries;
 let status_display; 
 let clock;
+let timeInterval;
 
 
 
@@ -67,7 +68,7 @@ function loadPage(){
 
 function startTimer() {
     if (!isTimerRunning)
-        setInterval(timer, 1000);
+        timeInterval = setInterval(timer, 1000);
     isTimerRunning = true;
 }
 
@@ -76,8 +77,22 @@ function timer() {
     let minutes = Math.floor(countdownTime / 60);
     let seconds = countdownTime % 60;
 
+    if ((minutes == 0) && (seconds == 0))
+        stopCountdownTimer();
+
+    if (seconds < 10) 
+        seconds = "0" + seconds;
+    if (minutes < 10)
+        minutes = "0" + minutes;
+
     clock.innerHTML = minutes + ":" + seconds;
 
+    
+
     countdownTime--;
+}
+
+function stopCountdownTimer() {
+    clearInterval(timeInterval);
 }
 
