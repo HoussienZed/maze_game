@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", loadPage);
 
 function displayScore(message){
     if(message != "")
-        status_display.innerHTML = message + "<br/>" + "Your Score is: " + score;
+        status_display.innerHTML = message + " Your Score is: " + score;
 }
 
 function gameOver(){
