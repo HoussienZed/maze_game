@@ -19,6 +19,7 @@ let timeInterval;
 let coins;
 
 let coinAudio;
+let gameEndAudio;
 
 
 
@@ -75,7 +76,8 @@ function loadPage(){
     status_display = document.getElementById("status");
     clock = document.getElementById("countdownTimer");
     coins = document.getElementsByClassName("icon");
-    coinAudio = document.getElementById("audio");
+    coinAudio = document.getElementById("coinAudio");
+    gameEndAudio = document.getElementById("gameOverAudio");
 
     end.addEventListener("mouseover", endGame);
     start.addEventListener("click", startGame);
@@ -106,6 +108,7 @@ function timer() {
         is_game_running = false;
         gameFinished = true;
         stopGame();
+        gameOverAudio();
     }
     if (seconds < 10) 
         seconds = "0" + seconds;
@@ -127,7 +130,7 @@ function disappearCoins() {
                 score += 1;
             })
             coinAudio.curretTime = 0;
-            coins[i].addEventListener("mouseover", play);
+            coins[i].addEventListener("mouseover", coiAudioPlay);
         }
     }
 }
@@ -142,6 +145,10 @@ function stopGame() {
 }
 
 
-function play() {
+function coiAudioPlay() {
     coinAudio.play();
+}
+
+function gameOverAudio() {
+    gameEndAudio.play();
 }
