@@ -18,9 +18,9 @@ let clock;
 let timeInterval;
 let coins;
 
-let coinAudio;
+let coinCollectAudio;
 let gameEndAudio;
-
+let winnerAudio;
 
 
 
@@ -66,6 +66,7 @@ function endGame(){
         score = score + 5;
         displayScore("You Won!");
         is_game_running = false;
+        winner();
     }
 }
 
@@ -76,14 +77,16 @@ function loadPage(){
     status_display = document.getElementById("status");
     clock = document.getElementById("countdownTimer");
     coins = document.getElementsByClassName("icon");
-    coinAudio = document.getElementById("coinAudio");
+    coinCollectAudio = document.getElementById("coinAudio");
     gameEndAudio = document.getElementById("gameOverAudio");
-
+    winnerAudio = document.getElementById("winnerAudio");
+    
     end.addEventListener("mouseover", endGame);
     start.addEventListener("click", startGame);
     for(let i = 0; i < boundaries.length; i++){
         boundaries[i].addEventListener("mouseover", gameOver);
     }
+    
 }
 
 //stating when to start the countdown timer
@@ -130,7 +133,7 @@ function disappearCoins() {
                 score += 1;
             })
             coinAudio.curretTime = 0;
-            coins[i].addEventListener("mouseover", coiAudioPlay);
+            coins[i].addEventListener("mouseover", coinAudioPlay);
         }
     }
 }
@@ -145,10 +148,14 @@ function stopGame() {
 }
 
 
-function coiAudioPlay() {
-    coinAudio.play();
+function coinAudioPlay() {
+    coinCollectAudio.play();
 }
 
 function gameOverAudio() {
     gameEndAudio.play();
+}
+
+function winner() {
+    winnerAudio.play();
 }

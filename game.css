@@ -52,6 +52,9 @@ div.boundary.example {
 	margin: auto;
 	width: 100px;
 	height: 25px;
+	display: flex;
+	justify-self: center;
+	align-items: center;
 }
 
 div.youlose {
@@ -151,6 +154,19 @@ neighboring elements.  Necessary to avoid giving ids to the boundary divs
 	animation-duration: 2s;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
+}
+
+button {
+	text-align: center;
+	text-decoration: none;
+	color: white;
+	border: none;
+	display: block;
+	margin: auto;
+	cursor: pointer;
+	margin-top: 30px;
+	padding: 10px;
+	background-color: black;
 }
 
 @keyframes coinSpinner {
