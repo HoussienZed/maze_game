@@ -1,8 +1,13 @@
+
+
 //Initialized variables
 let is_game_running = false; 
 let score = 0;
-let countdownTime = 2;
+let countdownTime = 15;
+let gameStarted = false;
 let isTimerRunning = false;
+let gameFinished = false;
+
 
 //Declared variables
 let end;
@@ -11,6 +16,9 @@ let boundaries;
 let status_display; 
 let clock;
 let timeInterval;
+let coins;
+
+let coinAudio;
 
 
 
@@ -23,29 +31,37 @@ function displayScore(message){
         status_display.innerHTML = message + " Your Score is: " + score;
 }
 
+//executing when mouseover boundaries to make them red 
 function gameOver(){
     if(is_game_running){
         for(let i = 0; i < boundaries.length; i++)
-            boundaries[i].style.backgroundColor = "rgb(243, 159, 159)"; 
+            boundaries[i].style.backgroundColor = "rgb(243, 159, 159)"; //light red
         if(score > 0)
             score = score - 1;
-        displayScore("Game Over!");
-        is_game_running = false;
+        displayScore("Round is over!");
+        is_game_running = false; //not to make the function endGame execute when round is over
     }
 }
 
+//start game when clicking on S
 function startGame(){
-    displayScore("");
-    is_game_running = true;
-    for(let i = 0; i < boundaries.length; i++)
-        boundaries[i].style.backgroundColor = "#eeeeee"; 
-    startTimer();
-}
+    if(!gameFinished) {
+        displayScore("Round started!");
+        for (let i = 0; i < coins.length; i++)
+            coins[i].style.visibility = "visible";
+        for(let i = 0; i < boundaries.length; i++)
+            boundaries[i].style.backgroundColor = "#eeeeee"; // grey
+        startTimer();
+        disappearCoins();
+        gameStarted = true;
+        is_game_running = true;
+}}
 
+//ending game when mouese is over E
 function endGame(){
     if(is_game_running){
         for(let i = 0; i < boundaries.length; i++)
-            boundaries[i].style.backgroundColor = "rgb(113 225 141)"; 
+            boundaries[i].style.backgroundColor = "rgb(113 225 141)"; //light green
         score = score + 5;
         displayScore("You Won!");
         is_game_running = false;
@@ -56,8 +72,10 @@ function loadPage(){
     end = document.getElementById("end");
     start = document.getElementById("start");
     boundaries = document.getElementsByClassName("boundary");
-    status_display =  document.getElementById("status");
+    status_display = document.getElementById("status");
     clock = document.getElementById("countdownTimer");
+    coins = document.getElementsByClassName("icon");
+    coinAudio = document.getElementById("audio");
 
     end.addEventListener("mouseover", endGame);
     start.addEventListener("click", startGame);
@@ -66,20 +84,29 @@ function loadPage(){
     }
 }
 
+//stating when to start the countdown timer
 function startTimer() {
-    if (!isTimerRunning)
+    if (!isTimerRunning){
         timeInterval = setInterval(timer, 1000);
-    isTimerRunning = true;
+        gameStarted = true;
+        is_game_running = true;
+    }
+    isTimerRunning = true; //not to let setInterval get called everytime startTimer is called
 }
 
-
+//setting a countdown timer for the game
 function timer() {
     let minutes = Math.floor(countdownTime / 60);
     let seconds = countdownTime % 60;
 
-    if ((minutes == 0) && (seconds == 0))
+    if ((minutes == 0) && (seconds == 0)){
         clearInterval(timeInterval);
-
+        gameOver();
+        gameStarted = false;
+        is_game_running = false;
+        gameFinished = true;
+        stopGame();
+    }
     if (seconds < 10) 
         seconds = "0" + seconds;
     if (minutes < 10)
@@ -87,10 +114,34 @@ function timer() {
 
     clock.innerHTML = minutes + ":" + seconds;
 
-    
-
     countdownTime--;
 }
 
 
-let coins = document.getElementsByClassName("icon");
+// make the coins disappear when mouseover
+function disappearCoins() {
+    if(is_game_running) {
+        for(let i = 0; i < coins.length; i++){
+            coins[i].addEventListener("mouseover", function() {
+                this.style.visibility = "hidden";
+                score += 1;
+            })
+            coinAudio.curretTime = 0;
+            coins[i].addEventListener("mouseover", play);
+        }
+    }
+}
+
+function stopGame() {
+    if(gameFinished) {
+        for(let i = 0; i < boundaries.length; i++) {
+            boundaries[i].style.backgroundColor = "rgb(243, 159, 159)";
+        }
+        displayScore("Game over!");
+    }
+}
+
+
+function play() {
+    coinAudio.play();
+}

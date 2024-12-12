@@ -123,23 +123,25 @@ neighboring elements.  Necessary to avoid giving ids to the boundary divs
 	left: 100px;
 }
 #coins .icon + .icon{
+	position: relative;
 	top: 150px;
 	left: 160px;
 }
 
 #coins .icon + .icon + .icon {
-	
+	position: relative;
 	top: 80px;
 	left: 190px;
 }
 
 #coins .icon + .icon + .icon + .icon{
-	
+	position: relative;
 	top: 120px;
 	left: 270px;
 }
 
 #coins .icon + .icon + .icon + .icon + .icon {
+	position: relative;
 	top: 215px;
 	left: 350px;
 }
